@@ -2,7 +2,7 @@ from django.db import models
 
 
 class MagicSchool(models.Model):
-    index = models.CharField(max_length=100, unique=True)
+    index = models.CharField(max_length=100, unique=True, null=True, blank=True)
     name = models.CharField(max_length=100)
     desc = models.JSONField()
     url = models.CharField(max_length=100, null=True, blank=True)
@@ -16,6 +16,6 @@ class MagicSchool(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        url = f"/api/magic-schools/{self.index}"
-        self.url = url
+        self.index = self.name.lower().replace(" ", "-")
+        self.url = f"/api/magic-schools/{self.index}"
         return super().save(*args, **kwargs)
