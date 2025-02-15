@@ -1,3 +1,6 @@
 # Models
 
-from api.models.spell import Spell, MagicSchool
+from .spell import Spell
+from .magic_school import MagicSchool
+from .damage_type import DamageType
+from .ability_score import AbilityScore
